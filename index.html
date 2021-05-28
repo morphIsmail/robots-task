@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Олимпиадная задача про роботов</title>
+  <style>
+    * {
+      font-family: 'Calibri', sans-serif;
+    }
+    body {
+      padding: 50px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, label {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    input {
+      height: 30px;
+      padding: 10px;
+      width: 360px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+    }
+    div {
+      padding-top: 20px;
+      font-size: 24px;
+      line-height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <label for="robot">Изначально роботов:</label>
+  <input id="robot" type="number">
+  <label for="year">Сколько лет:</label>
+  <input id="year" type="number" value="3">
+  <div></div>
+
+  <script>
+    function sum(arr) {
+      let sum = 0;
+      for(let i=0; i<arr.length; i++) {
+        sum += arr[i]
+      }
+      return sum
+    }
+
+    function group(count) {
+      if(count % 3 == 0) {
+        return { '3': count / 3, '5': 0 }
+      }
+      if(count % 3 == 1) {
+        return { '3': (count - 10) / 3, '5': 2 }
+      }
+      if(count % 3 == 2) {
+        return { '3': (count - 5) / 3, '5': 1 }
+      }
+    }
+
+    function robots(year, count) {
+      if(count<8) return 'Слишком мало роботов, минимум 8'
+
+      let g = group(count)
+      let generation = [count, g['3'] * 5 + g['5'] * 9]
+
+      for(let i = 1; i < year; i++) {
+        g = group(sum(generation))
+        if(g['5'] == 0) {
+          generation.push(g['3'] * 5)
+        } else {
+          generation.push(g['3'] * 5 + g['5'] * 9)
+        }
+        if(generation.length == 4) generation.shift()
+      }
+      return [generation, sum(generation)]
+    }
+
+    for(let item of document.querySelectorAll('input')) {
+      item.addEventListener('input', function() {
+        let year = +document.querySelector('#year').value
+        let robot = +document.querySelector('#robot').value
+        let result = robots(year, robot)
+        document.querySelector('div').innerHTML = `
+        Количество роботов: ${result[1]}
+        <br>
+        Поколения роботов: ${result[0].join(', ')}
+        `
+      })
+    }
+  </script>
+</body>
+
+</html>
