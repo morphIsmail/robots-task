@@ -23,10 +23,7 @@
 19 % 3 = 1 (3+3+3+5+5)  
 20 % 3 = 2 (3+3+3+3+3+5)  
 
-### Поддержать автора ₽ублем:
-1. Сбер: 4274 3200 3233 1582  
-2. [YooMoney](https://sobe.ru/na/itdoctor)  
-3. [PayPal](https://paypal.me/itdoctorstudio)  
-  
-[YouTube](https://www.youtube.com/c/ITDoctor/)  
-[Телеграм](https://t.me/itdoctorstudio)
+## Исмаил Усеинов:
+* __YouTube канал ITDoctor:__ https://www.youtube.com/c/ITDoctor
+* __Группа в ВК:__ https://vk.com/itdoctorstudio 
+* __Telegram:__ https://t.me/itdoctorstudio 
